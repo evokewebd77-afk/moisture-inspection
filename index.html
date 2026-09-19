@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">FreshGuard — Moisture Inspection and Leak Detection</title>
+  <meta id="metaDesc" name="description" content="Moisture investigation for homes and business premises in the Netherlands. FreshGuard offers moisture assessment and works with BA-MAH Totaaltechniek when specialist leak detection is required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #021618;
+      --deep: #062d36;
+      --panel: #0a3d4a;
+      --aqua: #8fc640;
+      --aqua-strong: #6b9428;
+      --aqua-soft: #8fc640;
+      --fog: #f6faf1;
+      --white: #ffffff;
+      --muted: #5a6b52;
+      --line: rgba(2, 22, 25, 0.1);
+      --line-strong: rgba(2, 22, 25, 0.16);
+      --soft: rgba(143, 198, 64, 0.12);
+      --radius: 18px;
+      --pad: clamp(20px, 4vw, 48px);
+      --max: 1120px;
+      --wide: 1280px;
+      --nav: 72px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+      --font: Figtree, system-ui, sans-serif;
+      --display: Outfit, Figtree, sans-serif;
+      --fx-ease: cubic-bezier(.22, 1, .36, 1);
+      --fx-spring: cubic-bezier(.34, 1.4, .64, 1);
+      --fx-dur: .7s;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: visible;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; color: inherit; }
+    h1, h2, h3 {
+      font-family: var(--display);
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    p { color: var(--muted); }
+    strong { color: var(--ink); font-weight: 650; }
+
+    .shell { width: min(var(--max), calc(100% - var(--pad) * 2)); margin: 0 auto; }
+    .shell-wide { width: min(var(--wide), calc(100% - var(--pad) * 2)); margin: 0 auto; }
+    
+    .label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--aqua-strong);
+      margin-bottom: 12px;
+    }
+    .lead { font-size: clamp(17px, 1.5vw, 19px); line-height: 1.6; max-width: 44ch; }
+
+    /* NAV */
+    .nav {
+      position: fixed; inset: 0 0 auto; z-index: 50; height: var(--nav);
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      transform: translate3d(0, -110%, 0);
+      transition: transform .75s var(--fx-ease), background .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    body.is-ready .nav { transform: none; }
+    .nav.is-scrolled { box-shadow: 0 10px 30px rgba(2,22,25,.08); }
+    .nav-row {
+      width: min(var(--wide), calc(100% - var(--pad) * 2));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+    }
+    .logo-img {
+      height: 42px;
+      width: auto;
+      max-height: 44px;
+      object-fit: contain;
+      display: block;
+    }
+    .logo svg { height: 36px; width: auto; color: var(--aqua-strong); }
+    .logo span em { font-style: normal; color: var(--aqua-strong); }
+    
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .nav-links a {
+      transition: color .2s ease, transform .2s var(--fx-spring);
+      cursor: pointer;
+    }
+    .nav-links a:hover { color: var(--ink); transform: translateY(-1px); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-self: end;
+    }
+    .phone {
+      font-size: 14px;
+      font-weight: 650;
+      color: var(--ink);
+      white-space: nowrap;
+      transition: color .2s ease;
+    }
+    .phone:hover { color: var(--aqua-strong); }
+    
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--fog);
+      border: 1px solid var(--line-strong);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .lang-btn:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .menu {
+      display: none; width: 42px; height: 42px; border-radius: 999px;
+      border: 1px solid var(--line-strong); background: #fff; cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 54px; padding: 0 28px; border-radius: 999px; border: 0;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      text-align: center;
+      transition:
+        transform .28s var(--fx-spring),
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .28s ease;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(2,22,25,.18);
+    }
+    .btn:active { transform: translateY(0) scale(.98); }
+    .btn-aqua { background: var(--aqua); color: var(--ink); }
+    .btn-aqua:hover { background: #9bd648; }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-dark:hover { background: var(--deep); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.12); color: #fff;
+      border: 1px solid rgba(255,255,255,.4);
+      backdrop-filter: blur(8px);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: #fff;
+    }
+    .btn-outline {
+      background: transparent; color: var(--ink);
+      border: 1px solid var(--line-strong);
+    }
+    .btn-outline:hover {
+      background: var(--fog);
+      border-color: var(--ink);
+    }
+
+    /* MOBILE DRAWER */
+    .drawer {
+      position: fixed; inset: 0; z-index: 60; background: var(--ink); color: #fff;
+      padding: max(24px, env(safe-area-inset-top)) max(var(--pad), env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(var(--pad), env(safe-area-inset-left));
+      display: flex; flex-direction: column; gap: 16px;
+      transform: translateX(100%); transition: transform .4s var(--ease);
+      overflow-y: auto;
+    }
+    .drawer.open { transform: none; }
+    .drawer-top {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    }
+    .drawer a, .drawer button.nav-link-btn {
+      font-size: 24px; font-family: var(--display); font-weight: 600; text-align: left;
+      background: none; border: 0; color: #fff; cursor: pointer; padding: 8px 0;
+    }
+    .drawer a:hover, .drawer button.nav-link-btn:hover { color: var(--aqua); }
+    .drawer .close-btn {
+      border: 0; border-radius: 999px; padding: 10px 18px;
+      background: #fff; color: var(--ink); font-weight: 700; cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--ink);
+      padding-top: var(--nav);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: right top;
+      transform-origin: top right;
+      transform: scale(1.02);
+      transition: transform 1.6s var(--ease);
+      z-index: 0;
+    }
+    body.is-ready .hero-bg { transform: scale(1); }
+    .hero::after {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(2,22,25,.75) 0%, rgba(2,22,25,.55) 45%, rgba(2,22,25,.28) 75%, rgba(2,22,25,.12) 100%),
+        linear-gradient(180deg, rgba(2,22,25,.25) 0%, rgba(2,22,25,.05) 40%, rgba(2,22,25,.55) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      width: min(var(--wide), calc(100% - var(--pad) * 2));
+      margin-left: max(var(--pad), calc((100% - var(--wide)) / 2 + var(--pad)));
+      margin-right: auto;
+      padding: 48px 0 64px;
+      max-width: 760px;
+    }
+    .hero .google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 8px 16px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: rgba(2, 22, 25, 0.65);
+      border: 1px solid rgba(143, 198, 64, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 13px;
+    }
+    .google-badge .g-mark { width: 20px; height: 20px; flex: 0 0 auto; }
+    .google-badge .gb-excellent { color: #f4c430; font-weight: 800; font-size: 13px; }
+    .google-badge .gb-score { font-weight: 700; font-size: 13px; }
+    .google-badge .gb-stars { color: #f4c430; letter-spacing: 1px; font-size: 13px; }
+    .google-badge .gb-meta { font-size: 12px; color: rgba(255,255,255,.8); }
+
+    .hero .eyebrow {
+      font-family: var(--display);
+      font-size: clamp(14px, 1.2vw, 16px);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #d7f08a;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 14px rgba(0,0,0,.6);
+    }
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(36px, 5.2vw, 60px);
+      max-width: 20ch;
+      margin-bottom: 18px;
+      line-height: 1.12;
+      text-shadow: 0 2px 20px rgba(0,0,0,.6), 0 1px 3px rgba(0,0,0,.7);
+    }
+    .hero h1 span {
+      color: #d7f08a;
+      text-shadow: 0 2px 20px rgba(0,0,0,.6), 0 1px 3px rgba(0,0,0,.7);
+    }
+    .hero p {
+      color: rgba(255,255,255,.94);
+      font-size: clamp(16px, 1.4vw, 18px);
+      max-width: 58ch;
+      margin-bottom: 14px;
+      line-height: 1.6;
+      text-shadow: 0 1px 12px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.6);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+    .supporting-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(2, 22, 25, 0.65);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.95);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* SECTION BASE */
+    section { padding: clamp(64px, 8vw, 96px) 0; }
+    .section-head {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 40px;
+      max-width: 680px;
+    }
+    .section-head h2 { font-size: clamp(30px, 4vw, 44px); }
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      justify-items: center;
+    }
+    .section-head.center p { margin-left: auto; margin-right: auto; }
+
+    /* PROBLEMS SECTION */
+    .problems-sec { background: var(--fog); border-bottom: 1px solid var(--line); }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .problems-list {
+      display: grid;
+      gap: 14px;
+      list-style: none;
+    }
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(2,22,25,0.03);
+      transition: all .25s ease;
+    }
+    .problem-item:hover {
+      border-color: var(--aqua);
+      transform: translateX(4px);
+      box-shadow: 0 8px 24px rgba(2,22,25,0.06);
+    }
+    .problem-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--soft); color: var(--aqua-strong);
+      display: grid; place-items: center; flex: 0 0 auto; margin-top: 2px;
+    }
+    .problem-icon svg { width: 16px; height: 16px; }
+    .problem-item span { font-weight: 600; color: var(--ink); font-size: 15px; }
+
+    .problem-note-card {
+      background: var(--white);
+      border: 2px dashed var(--aqua);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(2,22,25,0.04);
+      display: grid;
+      gap: 16px;
+    }
+    .problem-note-card h3 { font-size: 20px; color: var(--ink); }
+    .problem-note-card p { font-size: 15px; }
+
+    /* SERVICE OVERVIEW (3 CARDS) */
+    .service-sec {
+      position: relative;
+      background: url("img1.png") center/cover no-repeat;
+      overflow: hidden;
+    }
+    .service-sec::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 22, 25, 0.6);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .service-sec .shell {
+      position: relative;
+      z-index: 1;
+    }
+    .service-sec .section-head .label {
+      color: #bbf765;
+    }
+    .service-sec .section-head h2 {
+      color: #ffffff;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+    }
+    .service-sec .section-head p {
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    }
+    .cards-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px 26px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(2,22,25,0.05);
+      transition: transform .35s var(--fx-ease), box-shadow .35s ease, border-color .35s ease, background .3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(2,22,25,0.12);
+      border-color: var(--aqua);
+      background: #ffffff;
+    }
+    .service-card::before {
+      content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px;
+      background: var(--aqua); opacity: 0; transition: opacity .3s ease;
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card .card-num {
+      font-size: 13px; font-weight: 800; color: var(--aqua-strong);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
+    }
+    .service-card h3 { font-size: 22px; margin-bottom: 14px; }
+    .service-card p { font-size: 15px; line-height: 1.6; }
+
+    .service-note-box {
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--aqua);
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(2,22,25,0.06);
+    }
+
+    /* PROCESS (4 STEPS) */
+    .process-sec { background: var(--fog); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(2,22,25,0.03);
+      transition: all .3s ease;
+    }
+    .step-card:hover {
+      border-color: var(--aqua);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(2,22,25,0.08);
+    }
+    .step-badge {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--ink); color: #fff;
+      display: grid; place-items: center;
+      font-family: var(--display); font-size: 18px; font-weight: 700;
+    }
+    .step-card h3 { font-size: 18px; line-height: 1.3; }
+    .step-card p { font-size: 14px; line-height: 1.6; }
+
+    /* MID-PAGE CTA BANNER */
+    .mid-cta {
+      background: url("img3.png") center/cover no-repeat;
+      color: #fff;
+      padding: clamp(64px, 8vw, 96px) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .mid-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(2, 22, 25, 0.55) 0%, rgba(6, 45, 54, 0.45) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .mid-cta::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(143,198,64,0.18) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .mid-cta-inner {
+      position: relative; z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+    }
+    .mid-cta h2 {
+      color: #fff;
+      font-size: clamp(28px, 3.8vw, 40px);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    }
+    .mid-cta p {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 17px;
+      max-width: 48ch;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    }
+
+    /* WHO IT'S FOR */
+    .who-sec { background: var(--white); }
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .who-card {
+      background: var(--fog);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .who-card h3 { font-size: 22px; color: var(--ink); }
+    .who-card p { font-size: 15px; line-height: 1.65; }
+
+    /* FAQ ACCORDION */
+    .faq-sec {
+      position: relative;
+      background: url("faq.png") center/cover no-repeat;
+      border-top: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .faq-sec::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 22, 25, 0.65);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .faq-sec .shell {
+      position: relative;
+      z-index: 1;
+    }
+    .faq-sec .section-head .label {
+      color: #bbf765;
+    }
+    .faq-sec .section-head h2 {
+      color: #ffffff;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+    }
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 14px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(2,22,25,0.12);
+      transition: all .25s ease;
+    }
+    .faq-item:hover, .faq-item[open] {
+      border-color: var(--aqua);
+      background: #ffffff;
+      box-shadow: 0 12px 30px rgba(2,22,25,0.18);
+    }
+    .faq-item summary {
+      padding: 20px 24px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--aqua-strong);
+      transition: transform .25s ease;
+      flex: 0 0 auto;
+    }
+    .faq-item[open] summary::after {
+      content: "−";
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ENQUIRY / CONTACT */
+    .contact-sec {
+      position: relative;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f6faf1 0%, #ffffff 100%);
+      border-top: 1px solid var(--line);
+      scroll-margin-top: calc(var(--nav) + 12px);
+      overflow: hidden;
+      perspective: 1200px;
+    }
+    .contact-parallax-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(60px);
+      opacity: 0.55;
+      z-index: 0;
+      transition: transform 0.15s cubic-bezier(.22, 1, .36, 1);
+      will-change: transform;
+    }
+    .blob-1 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(143, 198, 64, 0.38) 0%, rgba(143, 198, 64, 0) 70%);
+      top: -40px; right: -60px;
+    }
+    .blob-2 {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(6, 45, 54, 0.15) 0%, rgba(6, 45, 54, 0) 70%);
+      bottom: -100px; left: -120px;
+    }
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(28px, 5vw, 56px);
+      align-items: start;
+    }
+    .contact-copy {
+      display: grid;
+      gap: 16px;
+    }
+    .contact-copy h2 { font-size: clamp(30px, 3.8vw, 42px); }
+    .contact-meta {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 20px rgba(2,22,25,0.04);
+    }
+    .contact-meta a.phone-lg {
+      font-family: var(--display);
+      font-size: clamp(22px, 2.5vw, 28px);
+      font-weight: 700;
+      color: var(--aqua-strong);
+    }
+    .contact-meta span { color: var(--muted); font-size: 14px; font-weight: 600; }
+    
+    .form-card-wrap {
+      position: relative;
+      perspective: 1200px;
+      will-change: transform;
+    }
+    .form-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(143, 198, 64, 0.45);
+      border-radius: 22px;
+      padding: clamp(24px, 3.5vw, 36px);
+      box-shadow: 0 20px 50px rgba(2, 22, 25, .08), 0 2px 8px rgba(2, 22, 25, .04);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transform-style: preserve-3d;
+      transition: transform 0.22s cubic-bezier(.22, 1, .36, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
+    .form-card:hover {
+      box-shadow: 0 30px 65px rgba(2, 22, 25, .12), 0 0 25px rgba(143, 198, 64, 0.25);
+      border-color: var(--aqua);
+    }
+    .form-floating-badge {
+      position: absolute;
+      top: -14px;
+      right: 22px;
+      background: var(--ink);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(2, 22, 25, 0.22);
+      border: 1px solid rgba(143, 198, 64, 0.5);
+      z-index: 5;
+      pointer-events: none;
+      transform: translateZ(30px);
+      transition: transform 0.22s cubic-bezier(.22, 1, .36, 1);
+    }
+    .form-floating-badge .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--aqua);
+      display: inline-block;
+      box-shadow: 0 0 8px var(--aqua);
+      animation: badgePulse 2s infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.25); }
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .full { grid-column: 1 / -1; }
+    label {
+      display: grid; gap: 6px;
+      font-size: 13px; font-weight: 600;
+      color: var(--ink);
+    }
+    input, textarea, select {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: var(--fog);
+      padding: 13px 14px;
+      color: var(--ink);
+      outline: none;
+      transition: all .2s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--aqua-strong);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(143,198,64,0.2);
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    .upload {
+      border: 2px dashed rgba(2,22,25,0.2);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 14px;
+      background: var(--fog);
+      transition: all .2s ease;
+    }
+    .upload:hover { border-color: var(--aqua-strong); background: #fff; }
+    .form-bottom {
+      display: flex; justify-content: space-between; gap: 14px;
+      align-items: center; flex-wrap: wrap; margin-top: 6px;
+    }
+    .fine { font-size: 12px; color: var(--muted); }
+    #formOk {
+      display: none;
+      background: var(--fog);
+      border: 1px solid var(--aqua);
+      padding: 16px;
+      border-radius: 12px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.78);
+      padding: 48px 0 32px;
+    }
+    .foot-top {
+      display: flex; justify-content: space-between; gap: 24px;
+      align-items: center; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; font-weight: 600; }
+    .foot-links a:hover { color: var(--aqua); }
+    .foot-bottom {
+      display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12);
+      font-size: 13px;
+      color: rgba(255,255,255,.7);
+    }
+
+    /* AMBIENT FLYERS (LEAVES) */
+    .flyers {
+      position: fixed; inset: 0; z-index: 6; pointer-events: none; overflow: hidden;
+    }
+    .flyer {
+      position: absolute; display: block; will-change: transform;
+      animation-timing-function: ease-in-out; animation-iteration-count: infinite;
+    }
+    .flyer-leaf {
+      width: 52px; height: 52px; color: var(--aqua); opacity: 0.45;
+      filter: drop-shadow(0 6px 14px rgba(143,198,64,.3));
+    }
+    .flyer-leaf svg { width: 100%; height: 100%; display: block; }
+    .f1 { left: 8%; top: 20%; animation: flyA 14s infinite; }
+    .f2 { left: 86%; top: 28%; animation: flyB 16s infinite; animation-delay: -3s; }
+    .f3 { left: 14%; top: 72%; animation: flyC 15s infinite; animation-delay: -6s; }
+    .f4 { left: 82%; top: 76%; animation: flyA 13s infinite reverse; animation-delay: -2s; }
+
+    @keyframes flyA {
+      0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+      50%  { transform: translate3d(-30px, -150px, 0) rotate(-15deg) scale(.95); }
+      100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    }
+    @keyframes flyB {
+      0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50%  { transform: translate3d(50px, 120px, 0) rotate(25deg); }
+      100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    }
+    @keyframes flyC {
+      0%   { transform: translate3d(0, 0, 0) rotate(12deg); }
+      50%  { transform: translate3d(-90px, -80px, 0) rotate(-30deg); }
+      100% { transform: translate3d(0, 0, 0) rotate(12deg); }
+    }
+
+    /* FABS */
+    .fabs {
+      position: fixed;
+      right: max(18px, env(safe-area-inset-right));
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 70;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .fab {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 0; cursor: pointer;
+      box-shadow: 0 10px 28px rgba(2,22,25,.22);
+      transition: all .28s var(--fx-spring);
+    }
+    .fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 14px 32px rgba(2,22,25,.28); }
+    .fab svg { width: 26px; height: 26px; display: block; }
+    .fab-wa { background: #25d366; color: #fff; }
+    .fab-wa:hover { background: #1ebe57; }
+    .fab-lang {
+      background: var(--ink); color: #fff; font-family: var(--display);
+      font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
+    }
+    .fab-top {
+      background: var(--aqua); color: var(--ink);
+      visibility: hidden; opacity: 0; pointer-events: none;
+    }
+    .fab-top.is-visible { visibility: visible; opacity: 1; pointer-events: auto; }
+
+    /* MOBILE FLOATING BAR */
+    .mobile-bar {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      padding: 10px 16px;
+      z-index: 55;
+      gap: 10px;
+    }
+    .mobile-bar a { flex: 1; min-height: 46px; font-size: 14px; }
+
+    /* ANIMATIONS */
+    .fx {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+      transition: opacity var(--fx-dur) var(--fx-ease), transform var(--fx-dur) var(--fx-ease);
+      transition-delay: calc(var(--d, 0) * 55ms);
+    }
+    .fx.in { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      :root { --nav: 64px; --pad: 20px; }
+      .nav-links { display: none; }
+      .menu { display: inline-flex; align-items: center; justify-content: center; }
+      .problems-grid, .cards-grid-3, .steps-grid, .who-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .hero { min-height: auto; padding-top: calc(var(--nav) + 20px); }
+      .hero-bg { object-position: 70% top; }
+      .hero-inner { padding: 24px 0 48px; }
+      .phone { display: none; }
+      .form-card { transform: none !important; }
+      .form-card-wrap { transform: none !important; perspective: none; }
+      .contact-parallax-blob { opacity: 0.3; }
+    }
+
+    @media (max-width: 700px) {
+      :root { --pad: 16px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+      form { grid-template-columns: 1fr; }
+      .form-bottom { flex-direction: column; align-items: stretch; }
+      .form-bottom .btn { width: 100%; }
+      .mobile-bar { display: flex; }
+      footer { padding-bottom: 96px; }
+      .fabs { bottom: 74px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating particles -->
+  <div class="flyers" aria-hidden="true">
+    <span class="flyer flyer-leaf f1">
+      <svg viewBox="0 0 64 64" fill="none"><path d="M52 8C28 10 12 28 12 48c12-2 28-14 36-36 2 14-2 28-12 38 18-8 28-24 16-42z" fill="currentColor"/><path d="M20 46c10-8 20-22 24-34" stroke="currentColor" stroke-width="2" opacity=".45"/></svg>
+    </span>
+    <span class="flyer flyer-leaf f2">
+      <svg viewBox="0 0 64 64" fill="none"><path d="M52 8C28 10 12 28 12 48c12-2 28-14 36-36 2 14-2 28-12 38 18-8 28-24 16-42z" fill="currentColor"/><path d="M20 46c10-8 20-22 24-34" stroke="currentColor" stroke-width="2" opacity=".45"/></svg>
+    </span>
+    <span class="flyer flyer-leaf f3">
+      <svg viewBox="0 0 64 64" fill="none"><path d="M52 8C28 10 12 28 12 48c12-2 28-14 36-36 2 14-2 28-12 38 18-8 28-24 16-42z" fill="currentColor"/><path d="M20 46c10-8 20-22 24-34" stroke="currentColor" stroke-width="2" opacity=".45"/></svg>
+    </span>
+    <span class="flyer flyer-leaf f4">
+      <svg viewBox="0 0 64 64" fill="none"><path d="M52 8C28 10 12 28 12 48c12-2 28-14 36-36 2 14-2 28-12 38 18-8 28-24 16-42z" fill="currentColor"/><path d="M20 46c10-8 20-22 24-34" stroke="currentColor" stroke-width="2" opacity=".45"/></svg>
+    </span>
+  </div>
+
+  <!-- Header -->
+  <header class="nav">
+    <div class="nav-row">
+      <a class="logo" href="#hero" aria-label="FreshGuard">
+        <img class="logo-img" src="https://backend.freshguard.nl/assets/ad051085-a0b8-416a-af8d-76220dfc087b" alt="FreshGuard" />
+      </a>
+
+      <div class="nav-links">
+        <a href="#problems" id="navProblems">Problems</a>
+        <a href="#service" id="navService">Service Overview</a>
+        <a href="#process" id="navProcess">Process</a>
+        <a href="#who" id="navWho">Who It's For</a>
+        <a href="#faq" id="navFaq">FAQ</a>
+      </div>
+
+      <div class="nav-right">
+        <a class="phone" href="tel:+31625133975">+31 6 25133975</a>
+        <button type="button" class="lang-btn" id="langNavBtn" onclick="toggleLang()">NL</button>
+        <a class="btn btn-aqua" href="#enquiry" id="navCtaBtn" style="min-height: 42px; padding: 0 18px; font-size: 13px;">Request an Inspection</a>
+        <button class="menu" id="menuBtn" aria-label="Open Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-top">
+      <a class="logo" href="#hero" onclick="closeDrawer()" aria-label="FreshGuard">
+        <img class="logo-img" src="https://backend.freshguard.nl/assets/ad051085-a0b8-416a-af8d-76220dfc087b" alt="FreshGuard" />
+      </a>
+      <button type="button" class="close-btn" id="closeMenu">Close</button>
+    </div>
+
+    <a href="#problems" onclick="closeDrawer()" id="drawerProblems">Problems</a>
+    <a href="#service" onclick="closeDrawer()" id="drawerService">Service Overview</a>
+    <a href="#process" onclick="closeDrawer()" id="drawerProcess">Process</a>
+    <a href="#who" onclick="closeDrawer()" id="drawerWho">Who It's For</a>
+    <a href="#faq" onclick="closeDrawer()" id="drawerFaq">FAQ</a>
+    <a href="#enquiry" onclick="closeDrawer()" id="drawerEnquiry">Request an Inspection</a>
+
+    <div style="margin-top: auto; padding-top: 20px; display: flex; gap: 10px; align-items: center;">
+      <button type="button" class="lang-btn" onclick="toggleLang(); closeDrawer();" id="drawerLangBtn" style="flex:1; padding: 12px;">Switch Language: NL</button>
+      <a class="btn btn-aqua" href="tel:+31625133975" style="flex:1; min-height: 44px; font-size: 13px;">Call FreshGuard</a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <img class="hero-bg" src="hero sec.png" alt="FreshGuard Moisture Inspection and Leak Detection" />
+    <div class="hero-inner">
+      <div class="google-badge fx">
+        <svg class="g-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        <span class="gb-excellent" id="gbExcellent">Excellent</span>
+        <span class="gb-score">4.9/5</span>
+        <span class="gb-stars" aria-hidden="true">★★★★★</span>
+        <span class="gb-meta" id="gbMeta">FreshGuard Netherlands</span>
+      </div>
+      
+      <div class="eyebrow fx" style="--d:1" id="heroEyebrow">Moisture investigation for homes and business premises</div>
+      <h1 class="fx" style="--d:2" id="heroH1">Moisture Inspection and Leak Detection for Your Property</h1>
+      <p class="fx" style="--d:3" id="heroP1">Unexplained damp patches, recurring moisture or a suspected hidden leak? Start with an investigation suited to the problem before deciding what work to arrange. FreshGuard offers moisture assessment and works with BA-MAH Totaaltechniek when specialist leak detection is required.</p>
+      <p class="fx" style="--d:4" id="heroP2">Describe the signs you have noticed and provide your property postcode. We can discuss the appropriate assessment route and what information is needed next.</p>
+
+      <div class="hero-actions fx" style="--d:5">
+        <a class="btn btn-aqua" href="#enquiry" id="heroPrimaryBtn">Request an Inspection</a>
+        <a class="btn btn-ghost" href="#enquiry" id="heroSecondaryBtn">Discuss Your Moisture Problem</a>
+      </div>
+
+      <div class="supporting-line fx" style="--d:6" id="heroSupporting">
+        Moisture assessment • Suitable investigation options • Specialist leak detection through our partner
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS WE HELP ASSESS -->
+  <section class="problems-sec" id="problems">
+    <div class="shell">
+      <div class="section-head fx">
+        <div class="label" id="problemsLabel">Problems we help assess</div>
+        <h2 id="problemsH2">Find Out What Needs Investigating</h2>
+        <p class="lead" id="problemsIntro">A visible damp patch is a starting point for an enquiry, not a diagnosis. Tell us where the problem appears, when it began and whether it changes after rain, heating or water use.</p>
+      </div>
+
+      <div class="problems-grid">
+        <ul class="problems-list fx" style="--d:1" id="problemsList">
+          <li class="problem-item">
+            <span class="problem-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Damp marks on a wall, ceiling or floor.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Moisture that returns after decorating or surface cleaning.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Recurring mould where the underlying issue is unclear.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>A suspected leak with no obvious source.</span>
+          </li>
+          <li class="problem-item">
+            <span class="problem-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span>Persistent dampness or a musty smell in a particular room.</span>
+          </li>
+        </ul>
+
+        <div class="problem-note-card fx" style="--d:2">
+          <div class="label" style="margin-bottom:0;" id="problemsCardLabel">Guidance</div>
+          <h3 id="problemsCardTitle">Photos & Previous Findings</h3>
+          <p id="problemsBottomText">Include photographs and details of any previous inspection or repair. This helps the discussion focus on the unresolved problem.</p>
+          <a class="btn btn-dark" href="#enquiry" id="problemsCardBtn" style="justify-self: start; min-height: 46px; font-size: 14px;">Request an Inspection</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE OVERVIEW (3 CARDS) -->
+  <section class="service-sec" id="service">
+    <div class="shell">
+      <div class="section-head center fx">
+        <div class="label" id="serviceLabel">Service overview</div>
+        <h2 id="serviceH2">Choose an Investigation That Matches Your Enquiry</h2>
+        <p class="lead" id="serviceIntro">Start by describing the symptoms rather than choosing a technical service yourself. We can discuss the options with you.</p>
+      </div>
+
+      <div class="cards-grid-3 fx" style="--d:1" id="serviceCards">
+        <article class="service-card">
+          <div class="card-num">01</div>
+          <h3>Initial moisture assessment</h3>
+          <p>Start by describing the visible signs, property type and history of the problem. We can discuss whether the next step should be an assessment on site or a more specialist investigation.</p>
+        </article>
+        <article class="service-card">
+          <div class="card-num">02</div>
+          <h3>Moisture measurements and thermal imaging</h3>
+          <p>Where appropriate, moisture readings and thermal imaging can support the inspection. The choice of tools depends on the question being investigated and the accessible areas of the property.</p>
+        </article>
+        <article class="service-card">
+          <div class="card-num">03</div>
+          <h3>Specialist leak detection</h3>
+          <p>When a suspected leak needs specialist investigation, FreshGuard works with BA-MAH Totaaltechniek. Ask which company will attend, what the investigation includes and who will provide the quotation and report.</p>
+        </article>
+      </div>
+
+      <div class="service-note-box fx" style="--d:2" id="serviceNote">
+        Inspection and repair are different services. Confirm any repair, drying, restoration or follow-up work separately so you understand the full scope before booking.
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (4 STEPS) -->
+  <section class="process-sec" id="process">
+    <div class="shell">
+      <div class="section-head center fx">
+        <div class="label" id="processLabel">Process</div>
+        <h2 id="processH2">Arrange the Right Next Step</h2>
+      </div>
+
+      <div class="steps-grid fx" style="--d:1" id="processSteps">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <h3>Send the property details.</h3>
+          <p>Include your postcode, the location of the dampness and when you first noticed it. Photos and previous findings are helpful.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <h3>Discuss the investigation route.</h3>
+          <p>We review the enquiry and discuss whether moisture assessment or specialist leak detection is the appropriate starting point.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <h3>Confirm the appointment and scope.</h3>
+          <p>Check who will attend, which areas need access, the charges and whether a written report is included.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">4</div>
+          <h3>Use the findings to plan further work.</h3>
+          <p>Discuss what was found, what remains uncertain and which repairs or other services may need to be arranged separately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MID-PAGE CTA -->
+  <section class="mid-cta">
+    <div class="shell">
+      <div class="mid-cta-inner fx">
+        <h2 id="midCtaH2">Not Sure Which Inspection You Need?</h2>
+        <p id="midCtaText">Describe the symptoms rather than choosing a technical service yourself. We can discuss the options with you.</p>
+        <a class="btn btn-aqua" href="#enquiry" id="midCtaBtn">Send My Inspection Enquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO THE SERVICE IS FOR -->
+  <section class="who-sec" id="who">
+    <div class="shell">
+      <div class="section-head fx">
+        <div class="label" id="whoLabel">Who the service is for</div>
+        <h2 id="whoH2">Make an Informed Decision About Your Property</h2>
+      </div>
+
+      <div class="who-grid fx" style="--d:1">
+        <div class="who-card">
+          <div class="label" style="margin-bottom:0;" id="whoCard1Label">Property Owners & Managers</div>
+          <p id="whoP1">An inspection enquiry can help you clarify the next step before commissioning work. Tell us whether you own, rent or manage the property and whether the findings are needed for maintenance planning, a contractor or an insurance discussion.</p>
+        </div>
+        <div class="who-card">
+          <div class="label" style="margin-bottom:0;" id="whoCard2Label">Reports & Documentation</div>
+          <p id="whoP2">If documentation is important, explain this before booking. Report requirements and insurer acceptance should be checked in advance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREQUENTLY ASKED QUESTIONS -->
+  <section class="faq-sec" id="faq">
+    <div class="shell">
+      <div class="section-head center fx">
+        <div class="label" id="faqLabel">Frequently asked questions</div>
+        <h2 id="faqH2">Questions About Moisture Inspections and Leak Detection</h2>
+      </div>
+
+      <div class="faq-list fx" style="--d:1" id="faqList">
+        <details class="faq-item" open>
+          <summary>Is every damp patch caused by a leaking pipe?</summary>
+          <div class="faq-answer">
+            <p>A description or photograph alone cannot confirm the cause. Explain when and where the dampness appears so the appropriate type of investigation can be discussed.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Who carries out specialist leak detection?</summary>
+          <div class="faq-answer">
+            <p>FreshGuard works with BA-MAH Totaaltechniek for specialist leak detection. Confirm the attending provider, quotation and agreed scope when arranging the service.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Will walls or floors need to be opened?</summary>
+          <div class="faq-answer">
+            <p>Specialist methods may help investigate without unnecessary opening of surfaces. The access required depends on the property and the findings. Discuss any opening work with the provider before it proceeds.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Does thermal imaging show every hidden leak?</summary>
+          <div class="faq-answer">
+            <p>No single inspection method can answer every question. Discuss what the proposed inspection can establish, its limitations and whether further checks may be needed.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Does the inspection include repairs?</summary>
+          <div class="faq-answer">
+            <p>Do not assume repairs are included. Ask for a clear distinction between investigation, reporting and any separately arranged repair or restoration work.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I use the report for an insurance claim?</summary>
+          <div class="faq-answer">
+            <p>Ask about the documentation available before booking and check your insurer's requirements. An inspection or report does not guarantee reimbursement or claim acceptance.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>How much will the inspection cost?</summary>
+          <div class="faq-answer">
+            <p>Request a quotation for the relevant investigation. Confirm attendance charges, the included work, reporting and any additional fees before approving the appointment.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL ENQUIRY / CONTACT SECTION -->
+  <section class="contact-sec" id="enquiry">
+    <div class="contact-parallax-blob blob-1" aria-hidden="true"></div>
+    <div class="contact-parallax-blob blob-2" aria-hidden="true"></div>
+    <div class="shell contact-grid">
+      <div class="contact-copy fx">
+        <div class="label" id="enquiryLabel">Final enquiry section</div>
+        <h2 id="enquiryH2">Tell Us About the Dampness or Suspected Leak</h2>
+        <p class="lead" id="enquirySub">Send your property details to discuss the right investigation and request information about availability and costs.</p>
+        
+        <div class="contact-meta">
+          <span id="contactDirectHead">Direct Contact:</span>
+          <a class="phone-lg" href="tel:+31625133975">+31 6 25133975</a>
+          <a href="mailto:info@freshguard.nl" style="font-weight:600; color:var(--ink);">info@freshguard.nl</a>
+          <span id="contactLineText">Prefer to discuss the problem? Call +31 6 25133975 or email info@freshguard.nl.</span>
+          <hr style="border:0; border-top:1px solid var(--line); margin:4px 0;" />
+          <span style="font-size: 13px; color: var(--muted);">FreshGuard B.V. • Bachlaan 5, 1272 EJ Huizen • KVK 95689443</span>
+        </div>
+      </div>
+
+      <div class="form-card-wrap fx" style="--d:1">
+        <div class="form-floating-badge" id="formBadge">
+          <span class="badge-dot"></span>
+          <span id="formBadgeText">Direct Inspection Enquiry</span>
+        </div>
+        <div class="form-card">
+          <form id="enquiryForm">
+            <label class="full" id="lbl-name">Name
+              <input type="text" name="name" id="input-name" required />
+            </label>
+
+            <label id="lbl-phone">Phone number
+              <input type="tel" name="phone" id="input-phone" required />
+            </label>
+
+            <label id="lbl-email">Email address
+              <input type="email" name="email" id="input-email" required />
+            </label>
+
+            <label id="lbl-postcode">Property postcode
+              <input type="text" name="postcode" id="input-postcode" required />
+            </label>
+
+            <label id="lbl-propertyType">Property type: Home / Rental property / Business premises / Other
+              <select name="propertyType" id="input-propertyType">
+                <option value="Home">Home</option>
+                <option value="Rental property">Rental property</option>
+                <option value="Business premises">Business premises</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <label class="full" id="lbl-message">What have you noticed and where?
+              <textarea name="message" id="input-message" placeholder="For example: a damp patch on the kitchen ceiling, first noticed last week. Please mention when it changes and any previous repairs or inspections." required></textarea>
+            </label>
+
+            <div class="upload full" id="uploadBox">
+              <span id="uploadLabel">Add photos — optional</span>
+              <input type="file" id="photosInput" accept="image/*" multiple hidden />
+              <div id="fileNames" class="fine" style="margin-top:6px; color:var(--aqua-strong); font-weight:600;"></div>
+            </div>
+
+            <p class="fine full" id="formHelper">Please provide a phone number or email address so we can respond. Add your postcode to help us discuss service availability.</p>
+            <p class="fine full" id="privacyText">We use the information you submit to handle your enquiry. Read our Privacy Policy for details.</p>
+
+            <div class="form-bottom full">
+              <button class="btn btn-aqua" type="submit" id="submitBtn">Request an Inspection</button>
+            </div>
+
+            <div id="formOk" class="full">
+              <p id="successMessage">Thank you. Your inspection enquiry has been received. FreshGuard will contact you to discuss the details and next steps.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="shell">
+      <div class="foot-top">
+        <a class="logo" href="#hero" aria-label="FreshGuard">
+          <img class="logo-img" src="https://backend.freshguard.nl/assets/ad051085-a0b8-416a-af8d-76220dfc087b" alt="FreshGuard" />
+        </a>
+        <div class="foot-links">
+          <a href="#problems" id="footLink1">Problems</a>
+          <a href="#service" id="footLink2">Service Overview</a>
+          <a href="#process" id="footLink3">Process</a>
+          <a href="#faq" id="footLink4">FAQ</a>
+          <a href="#enquiry" id="footLink5">Contact</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span id="footerText">FreshGuard B.V. • Bachlaan 5, 1272 EJ Huizen • KVK 95689443 • Privacy Policy</span>
+        <span>+31 6 25133975 • info@freshguard.nl</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="fabs" aria-label="Quick actions">
+    <button type="button" class="fab fab-top" id="backTop" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" class="fab fab-lang" id="fabLang" onclick="toggleLang()" aria-label="Switch language">
+      <span>NL</span>
+    </button>
+    <a class="fab fab-wa" href="https://api.whatsapp.com/send/?phone=31625133975&text=FreshGuard%20Moisture%20Inspection%20Enquiry" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.05 0C5.5 0 .2 5.3.2 11.85c0 2.09.55 4.13 1.6 5.94L0 24l6.4-1.67a11.8 11.8 0 0 0 5.64 1.44h.01c6.55 0 11.85-5.3 11.85-11.85 0-3.16-1.23-6.14-3.4-8.42zM12.05 21.2h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.8 1 1.01-3.7-.24-.38a9.8 9.8 0 0 1-1.5-5.24C1.15 6.4 6.05 1.5 12.05 1.5c2.62 0 5.08 1.02 6.93 2.87a9.74 9.74 0 0 1 2.87 6.93c0 6-4.9 10.9-9.8 10.9zm5.68-7.34c-.31-.16-1.84-.91-2.12-1.01-.28-.1-.49-.16-.7.16-.21.31-.8 1.01-.98 1.22-.18.21-.36.23-.67.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.54-.08-.16-.7-1.68-.96-2.3-.25-.6-.5-.52-.7-.53h-.6c-.21 0-.54.08-.82.39-.28.31-1.08 1.05-1.08 2.56s1.1 2.97 1.26 3.18c.16.21 2.16 3.3 5.24 4.62.73.32 1.3.5 1.75.64.73.23 1.4.2 1.93.12.59-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.48-.08-.13-.28-.21-.59-.36z"/></svg>
+    </a>
+  </div>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="mobile-bar" id="mobileBar">
+    <a class="btn btn-dark" href="tel:+31625133975" id="mobileCallBtn">Call FreshGuard</a>
+    <a class="btn btn-aqua" href="#enquiry" id="mobileQuoteBtn">Request an Inspection</a>
+  </div>
+
+  <!-- CONTENT DATA & ENGINE -->
+  <script>
+    var currentLang = 'en';
+
+    var pageData = {
+      en: {
+        title: "FreshGuard — Moisture Inspection and Leak Detection",
+        metaDesc: "Moisture investigation for homes and business premises in the Netherlands. FreshGuard offers moisture assessment and works with BA-MAH Totaaltechniek when specialist leak detection is required.",
+        nav: { problems: "Problems", service: "Service Overview", process: "Process", who: "Who It's For", faq: "FAQ", quote: "Request an Inspection" },
+        hero: {
+          eyebrow: "Moisture investigation for homes and business premises",
+          h1: "Moisture Inspection and Leak Detection for Your Property",
+          p1: "Unexplained damp patches, recurring moisture or a suspected hidden leak? Start with an investigation suited to the problem before deciding what work to arrange. FreshGuard offers moisture assessment and works with BA-MAH Totaaltechniek when specialist leak detection is required.",
+          p2: "Describe the signs you have noticed and provide your property postcode. We can discuss the appropriate assessment route and what information is needed next.",
+          primaryBtn: "Request an Inspection",
+          secondaryBtn: "Discuss Your Moisture Problem",
+          supporting: "Moisture assessment • Suitable investigation options • Specialist leak detection through our partner"
+        },
+        problems: {
+          label: "Problems we help assess",
+          h2: "Find Out What Needs Investigating",
+          intro: "A visible damp patch is a starting point for an enquiry, not a diagnosis. Tell us where the problem appears, when it began and whether it changes after rain, heating or water use.",
+          items: [
+            "Damp marks on a wall, ceiling or floor.",
+            "Moisture that returns after decorating or surface cleaning.",
+            "Recurring mould where the underlying issue is unclear.",
+            "A suspected leak with no obvious source.",
+            "Persistent dampness or a musty smell in a particular room."
+          ],
+          cardLabel: "Guidance",
+          cardTitle: "Photos & Previous Findings",
+          bottomText: "Include photographs and details of any previous inspection or repair. This helps the discussion focus on the unresolved problem.",
+          cardBtn: "Request an Inspection"
+        },
+        service: {
+          label: "Service overview",
+          h2: "Choose an Investigation That Matches Your Enquiry",
+          intro: "Start by describing the visible signs, property type and history of the problem to discuss the right investigation route.",
+          cards: [
+            {
+              num: "01",
+              heading: "Initial moisture assessment",
+              text: "Start by describing the visible signs, property type and history of the problem. We can discuss whether the next step should be an assessment on site or a more specialist investigation."
+            },
+            {
+              num: "02",
+              heading: "Moisture measurements and thermal imaging",
+              text: "Where appropriate, moisture readings and thermal imaging can support the inspection. The choice of tools depends on the question being investigated and the accessible areas of the property."
+            },
+            {
+              num: "03",
+              heading: "Specialist leak detection",
+              text: "When a suspected leak needs specialist investigation, FreshGuard works with BA-MAH Totaaltechniek. Ask which company will attend, what the investigation includes and who will provide the quotation and report."
+            }
+          ],
+          note: "Inspection and repair are different services. Confirm any repair, drying, restoration or follow-up work separately so you understand the full scope before booking."
+        },
+        process: {
+          label: "Process",
+          h2: "Arrange the Right Next Step",
+          steps: [
+            {
+              badge: "1",
+              heading: "Send the property details.",
+              text: "Include your postcode, the location of the dampness and when you first noticed it. Photos and previous findings are helpful."
+            },
+            {
+              badge: "2",
+              heading: "Discuss the investigation route.",
+              text: "We review the enquiry and discuss whether moisture assessment or specialist leak detection is the appropriate starting point."
+            },
+            {
+              badge: "3",
+              heading: "Confirm the appointment and scope.",
+              text: "Check who will attend, which areas need access, the charges and whether a written report is included."
+            },
+            {
+              badge: "4",
+              heading: "Use the findings to plan further work.",
+              text: "Discuss what was found, what remains uncertain and which repairs or other services may need to be arranged separately."
+            }
+          ]
+        },
+        midCta: {
+          h2: "Not Sure Which Inspection You Need?",
+          text: "Describe the symptoms rather than choosing a technical service yourself. We can discuss the options with you.",
+          btn: "Send My Inspection Enquiry"
+        },
+        who: {
+          label: "Who the service is for",
+          h2: "Make an Informed Decision About Your Property",
+          card1Label: "Property Owners & Managers",
+          p1: "An inspection enquiry can help you clarify the next step before commissioning work. Tell us whether you own, rent or manage the property and whether the findings are needed for maintenance planning, a contractor or an insurance discussion.",
+          card2Label: "Reports & Documentation",
+          p2: "If documentation is important, explain this before booking. Report requirements and insurer acceptance should be checked in advance."
+        },
+        faq: {
+          label: "Frequently asked questions",
+          h2: "Questions About Moisture Inspections and Leak Detection",
+          items: [
+            {
+              q: "Is every damp patch caused by a leaking pipe?",
+              a: "A description or photograph alone cannot confirm the cause. Explain when and where the dampness appears so the appropriate type of investigation can be discussed."
+            },
+            {
+              q: "Who carries out specialist leak detection?",
+              a: "FreshGuard works with BA-MAH Totaaltechniek for specialist leak detection. Confirm the attending provider, quotation and agreed scope when arranging the service."
+            },
+            {
+              q: "Will walls or floors need to be opened?",
+              a: "Specialist methods may help investigate without unnecessary opening of surfaces. The access required depends on the property and the findings. Discuss any opening work with the provider before it proceeds."
+            },
+            {
+              q: "Does thermal imaging show every hidden leak?",
+              a: "No single inspection method can answer every question. Discuss what the proposed inspection can establish, its limitations and whether further checks may be needed."
+            },
+            {
+              q: "Does the inspection include repairs?",
+              a: "Do not assume repairs are included. Ask for a clear distinction between investigation, reporting and any separately arranged repair or restoration work."
+            },
+            {
+              q: "Can I use the report for an insurance claim?",
+              a: "Ask about the documentation available before booking and check your insurer's requirements. An inspection or report does not guarantee reimbursement or claim acceptance."
+            },
+            {
+              q: "How much will the inspection cost?",
+              a: "Request a quotation for the relevant investigation. Confirm attendance charges, the included work, reporting and any additional fees before approving the appointment."
+            }
+          ]
+        },
+        enquiry: {
+          label: "Final enquiry section",
+          h2: "Tell Us About the Dampness or Suspected Leak",
+          sub: "Send your property details to discuss the right investigation and request information about availability and costs.",
+          badge: "Direct Inspection Enquiry",
+          formLabels: {
+            name: "Name",
+            phone: "Phone number",
+            email: "Email address",
+            postcode: "Property postcode",
+            propertyType: "Property type: Home / Rental property / Business premises / Other",
+            propertyOptions: ["Home", "Rental property", "Business premises", "Other"],
+            message: "What have you noticed and where?",
+            messagePlaceholder: "For example: a damp patch on the kitchen ceiling, first noticed last week. Please mention when it changes and any previous repairs or inspections.",
+            photos: "Add photos — optional",
+            helper: "Please provide a phone number or email address so we can respond. Add your postcode to help us discuss service availability.",
+            privacy: "We use the information you submit to handle your enquiry. Read our Privacy Policy for details.",
+            submit: "Request an Inspection",
+            success: "Thank you. Your inspection enquiry has been received. FreshGuard will contact you to discuss the details and next steps."
+          },
+          contactLine: "Prefer to discuss the problem? Call +31 6 25133975 or email info@freshguard.nl.",
+          mobileButtons: { call: "Call FreshGuard", quote: "Request an Inspection" },
+          footer: "FreshGuard B.V. • Bachlaan 5, 1272 EJ Huizen • KVK 95689443 • Privacy Policy"
+        }
+      },
+      nl: {
+        title: "FreshGuard — Vochtinspectie en lekdetectie",
+        metaDesc: "Onderzoek naar vochtproblemen in woningen en bedrijfspanden. FreshGuard biedt vochtanalyse en werkt samen met BA-MAH Totaaltechniek wanneer specialistische lekdetectie nodig is.",
+        nav: { problems: "Situaties", service: "Onderzoek", process: "Werkwijze", who: "Voor wie", faq: "Veelgestelde vragen", quote: "Inspectie aanvragen" },
+        hero: {
+          eyebrow: "Onderzoek naar vochtproblemen in woningen en bedrijfspanden",
+          h1: "Vochtinspectie en Lekdetectie voor Uw Woning of Pand",
+          p1: "Onverklaarbare vochtplekken, terugkerend vocht of een vermoeden van een verborgen lekkage? Laat eerst bespreken welk onderzoek bij het probleem past. FreshGuard biedt vochtanalyse en werkt samen met BA-MAH Totaaltechniek wanneer specialistische lekdetectie nodig is.",
+          p2: "Beschrijf wat u heeft opgemerkt en geef de postcode van het pand door. We bespreken welke beoordeling passend is en welke informatie nog nodig is.",
+          primaryBtn: "Vraag een inspectie aan",
+          secondaryBtn: "Bespreek uw vochtprobleem",
+          supporting: "Vochtanalyse • Passend onderzoek • Specialistische lekdetectie via onze partner"
+        },
+        problems: {
+          label: "Problems we help assess",
+          h2: "Krijg Duidelijkheid over Wat Onderzocht Moet Worden",
+          intro: "Een vochtplek vertelt waar u iets ziet, maar niet direct wat de oorzaak is. Geef aan waar de plek zit, wanneer deze is ontstaan en of u verschil merkt na regen, verwarmen of watergebruik.",
+          items: [
+            "Vochtplekken op een muur, plafond of vloer.",
+            "Vocht dat terugkomt na schilderen of schoonmaken.",
+            "Terugkerende schimmel zonder duidelijke oorzaak.",
+            "Een vermoeden van lekkage waarvan de bron onbekend is.",
+            "Aanhoudend vocht of een muffe geur in een bepaalde ruimte."
+          ],
+          cardLabel: "Advies",
+          cardTitle: "Foto's en Eerdere Bevindingen",
+          bottomText: "Voeg zo mogelijk foto's toe en vermeld eerder onderzoek of uitgevoerde reparaties. Zo kan het gesprek zich richten op het probleem dat nog niet is opgelost.",
+          cardBtn: "Inspectie aanvragen"
+        },
+        service: {
+          label: "Service overview",
+          h2: "Onderzoek dat Aansluit op Uw Situatie",
+          intro: "Beschrijf eenvoudig wat u merkt om te bespreken welk onderzoek aansluit op uw vraag.",
+          cards: [
+            {
+              num: "01",
+              heading: "Eerste beoordeling van het vochtprobleem",
+              text: "Beschrijf de zichtbare signalen, het type pand en het verloop van het probleem. We bespreken of een beoordeling op locatie of specialistisch onderzoek een passende vervolgstap is."
+            },
+            {
+              num: "02",
+              heading: "Vochtmetingen en thermografie",
+              text: "Waar geschikt kunnen vochtmetingen en warmtebeelden helpen bij de inspectie. Welke middelen worden ingezet, hangt af van de onderzoeksvraag en de bereikbaarheid van de betreffende delen van het pand."
+            },
+            {
+              num: "03",
+              heading: "Specialistische lekdetectie",
+              text: "Is specialistisch onderzoek naar een mogelijke lekkage nodig? Dan werkt FreshGuard samen met BA-MAH Totaaltechniek. Vraag vooraf wie het onderzoek uitvoert, wat is inbegrepen en wie de offerte en rapportage verzorgt."
+            }
+          ],
+          note: "Onderzoek en herstel zijn verschillende werkzaamheden. Bespreek reparaties, droging, herstelwerk en eventuele vervolgbezoeken afzonderlijk, zodat duidelijk is wat u afspreekt."
+        },
+        process: {
+          label: "Process",
+          h2: "Zo Regelt u een Passende Vervolgstap",
+          steps: [
+            {
+              badge: "1",
+              heading: "Stuur de gegevens van het pand.",
+              text: "Vermeld de postcode, waar u vocht ziet en wanneer u het voor het eerst opmerkte. Foto's en eerdere bevindingen zijn welkom."
+            },
+            {
+              badge: "2",
+              heading: "Bespreek het benodigde onderzoek.",
+              text: "We bekijken uw aanvraag en bespreken of vochtanalyse of specialistische lekdetectie een passende eerste stap is."
+            },
+            {
+              badge: "3",
+              heading: "Bevestig de afspraak en werkzaamheden.",
+              text: "Vraag wie langskomt, welke ruimtes toegankelijk moeten zijn, wat de kosten zijn en of een schriftelijk rapport is inbegrepen."
+            },
+            {
+              badge: "4",
+              heading: "Bepaal het vervolg op basis van de bevindingen.",
+              text: "Bespreek wat is vastgesteld, welke vragen nog openstaan en welke reparaties of andere werkzaamheden apart geregeld moeten worden."
+            }
+          ]
+        },
+        midCta: {
+          h2: "Weet u Niet Welk Onderzoek Nodig Is?",
+          text: "Beschrijf eenvoudig wat u merkt. U hoeft zelf nog geen technische oplossing te kiezen; we bespreken de mogelijkheden met u.",
+          btn: "Verstuur mijn aanvraag"
+        },
+        who: {
+          label: "Who the service is for",
+          h2: "Onderbouw de Volgende Stap voor Uw Pand",
+          card1Label: "Eigenaren & Beheerders",
+          p1: "Met een inspectieaanvraag kunt u duidelijkheid krijgen over de vervolgstap voordat u werkzaamheden laat uitvoeren. Laat weten of u eigenaar, huurder of beheerder bent en waarvoor u de bevindingen wilt gebruiken, bijvoorbeeld onderhoud, overleg met een aannemer of een verzekeringsvraag.",
+          card2Label: "Documentatie & Verzekering",
+          p2: "Heeft u specifieke documentatie nodig? Bespreek dit vóór het boeken. Controleer ook vooraf welke eisen uw verzekeraar aan een rapport stelt."
+        },
+        faq: {
+          label: "Frequently asked questions",
+          h2: "Veelgestelde Vragen over Vochtinspectie en Lekdetectie",
+          items: [
+            {
+              q: "Wordt iedere vochtplek veroorzaakt door een lekkende leiding?",
+              a: "Op basis van alleen een beschrijving of foto is de oorzaak niet vast te stellen. Geef aan wanneer en waar het vocht verschijnt, zodat het juiste type onderzoek kan worden besproken."
+            },
+            {
+              q: "Wie voert specialistische lekdetectie uit?",
+              a: "FreshGuard werkt hiervoor samen met BA-MAH Totaaltechniek. Bevestig bij het maken van de afspraak wie het onderzoek uitvoert, welke offerte geldt en wat de werkzaamheden omvatten."
+            },
+            {
+              q: "Moeten muren of vloeren worden opengemaakt?",
+              a: "Specialistische onderzoeksmethoden kunnen onnodig openmaken helpen beperken. Welke toegang nodig is, verschilt per situatie. Het is niet mogelijk om vooraf voor ieder pand te beloven dat er nooit iets open hoeft."
+            },
+            {
+              q: "Is iedere verborgen lekkage zichtbaar met een warmtebeeldcamera?",
+              a: "Eén onderzoeksmethode geeft niet op iedere vraag antwoord. Bespreek wat de voorgestelde inspectie kan vaststellen, welke beperkingen er zijn en of aanvullend onderzoek nodig kan zijn."
+            },
+            {
+              q: "Zijn reparaties bij de inspectie inbegrepen?",
+              a: "Ga daar niet automatisch van uit. Laat duidelijk vastleggen wat onder onderzoek en rapportage valt en welke reparaties of herstelwerkzaamheden apart worden afgesproken."
+            },
+            {
+              q: "Kan ik het rapport voor mijn verzekering gebruiken?",
+              a: "Vraag vooraf welke documentatie u ontvangt en controleer de voorwaarden van uw verzekeraar. Een inspectie of rapport biedt geen garantie op vergoeding of acceptatie van een claim."
+            },
+            {
+              q: "Wat kost een vochtinspectie of lekdetectie?",
+              a: "Vraag een offerte aan voor het passende onderzoek. Bespreek vooraf de bezoekkosten, werkzaamheden, rapportage en eventuele aanvullende kosten voordat u de afspraak bevestigt."
+            }
+          ]
+        },
+        enquiry: {
+          label: "Final enquiry section",
+          h2: "Vertel Ons over het Vocht of de Vermoedelijke Lekkage",
+          sub: "Stuur uw gegevens om het passende onderzoek te bespreken en informatie te ontvangen over beschikbaarheid en kosten.",
+          badge: "Directe inspectieaanvraag",
+          formLabels: {
+            name: "Naam",
+            phone: "Telefoonnummer",
+            email: "E-mailadres",
+            postcode: "Postcode van het pand",
+            propertyType: "Type pand: Eigen woning / Huurwoning / Bedrijfspand / Anders",
+            propertyOptions: ["Eigen woning", "Huurwoning", "Bedrijfspand", "Anders"],
+            message: "Wat merkt u en waar zit het probleem?",
+            messagePlaceholder: "Bijvoorbeeld: sinds vorige week een vochtplek op het keukenplafond. Vermeld wanneer de plek verandert en of er eerder onderzoek of reparaties zijn uitgevoerd.",
+            photos: "Foto's toevoegen — optioneel",
+            helper: "Vul een telefoonnummer of e-mailadres in, zodat we kunnen reageren. Met uw postcode kunnen we de beschikbaarheid voor uw locatie bespreken.",
+            privacy: "We gebruiken uw gegevens om uw aanvraag te behandelen. Lees ons privacybeleid voor meer informatie.",
+            submit: "Vraag een inspectie aan",
+            success: "Bedankt. We hebben uw inspectieaanvraag ontvangen. FreshGuard neemt contact met u op om de situatie en de vervolgstappen te bespreken."
+          },
+          contactLine: "Liever eerst overleggen? Bel +31 6 25133975 of mail naar info@freshguard.nl.",
+          mobileButtons: { call: "Bel FreshGuard", quote: "Inspectie aanvragen" },
+          footer: "FreshGuard B.V. • Bachlaan 5, 1272 EJ Huizen • KVK 95689443 • Privacybeleid"
+        }
+      }
+    };
+
+    function renderPage() {
+      var d = pageData[currentLang];
+
+      // Document title & meta
+      document.title = d.title;
+      document.getElementById('metaDesc').setAttribute('content', d.metaDesc);
+
+      // Nav labels
+      document.getElementById('navProblems').textContent = d.nav.problems;
+      document.getElementById('navService').textContent = d.nav.service;
+      document.getElementById('navProcess').textContent = d.nav.process;
+      document.getElementById('navWho').textContent = d.nav.who;
+      document.getElementById('navFaq').textContent = d.nav.faq;
+      document.getElementById('navCtaBtn').textContent = d.nav.quote;
+
+      // Drawer nav
+      document.getElementById('drawerProblems').textContent = d.nav.problems;
+      document.getElementById('drawerService').textContent = d.nav.service;
+      document.getElementById('drawerProcess').textContent = d.nav.process;
+      document.getElementById('drawerWho').textContent = d.nav.who;
+      document.getElementById('drawerFaq').textContent = d.nav.faq;
+      document.getElementById('drawerEnquiry').textContent = d.nav.quote;
+      document.getElementById('drawerLangBtn').textContent = currentLang === 'en' ? 'Taal wijzigen: NL' : 'Change Language: EN';
+
+      // Lang buttons
+      var nextLang = currentLang === 'en' ? 'NL' : 'EN';
+      document.getElementById('langNavBtn').textContent = nextLang;
+      document.getElementById('fabLang').querySelector('span').textContent = nextLang;
+
+      // Hero
+      document.getElementById('heroEyebrow').textContent = d.hero.eyebrow;
+      document.getElementById('heroH1').textContent = d.hero.h1;
+      document.getElementById('heroP1').textContent = d.hero.p1;
+      document.getElementById('heroP2').textContent = d.hero.p2;
+      document.getElementById('heroPrimaryBtn').textContent = d.hero.primaryBtn;
+      document.getElementById('heroSecondaryBtn').textContent = d.hero.secondaryBtn;
+      document.getElementById('heroSupporting').textContent = d.hero.supporting;
+
+      // Problems Section
+      document.getElementById('problemsLabel').textContent = d.problems.label;
+      document.getElementById('problemsH2').textContent = d.problems.h2;
+      document.getElementById('problemsIntro').textContent = d.problems.intro;
+      document.getElementById('problemsBottomText').textContent = d.problems.bottomText;
+      document.getElementById('problemsCardLabel').textContent = d.problems.cardLabel;
+      document.getElementById('problemsCardTitle').textContent = d.problems.cardTitle;
+      document.getElementById('problemsCardBtn').textContent = d.problems.cardBtn;
+
+      var problemsList = document.getElementById('problemsList');
+      problemsList.innerHTML = '';
+      d.problems.items.forEach(function (item) {
+        var li = document.createElement('li');
+        li.className = 'problem-item';
+        li.innerHTML = '<span class="problem-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>' + item + '</span>';
+        problemsList.appendChild(li);
+      });
+
+      // Service Section (3 Cards + Note)
+      document.getElementById('serviceLabel').textContent = d.service.label;
+      document.getElementById('serviceH2').textContent = d.service.h2;
+      if (document.getElementById('serviceIntro')) {
+        document.getElementById('serviceIntro').textContent = d.service.intro;
+      }
+      if (document.getElementById('serviceNote')) {
+        document.getElementById('serviceNote').textContent = d.service.note;
+      }
+
+      var serviceCards = document.getElementById('serviceCards');
+      serviceCards.innerHTML = '';
+      d.service.cards.forEach(function (card) {
+        var el = document.createElement('article');
+        el.className = 'service-card';
+        el.innerHTML = '<div class="card-num">' + card.num + '</div><h3>' + card.heading + '</h3><p>' + card.text + '</p>';
+        serviceCards.appendChild(el);
+      });
+
+      // Process Section (4 Steps)
+      document.getElementById('processLabel').textContent = d.process.label;
+      document.getElementById('processH2').textContent = d.process.h2;
+
+      var processSteps = document.getElementById('processSteps');
+      processSteps.innerHTML = '';
+      d.process.steps.forEach(function (st) {
+        var el = document.createElement('div');
+        el.className = 'step-card';
+        el.innerHTML = '<div class="step-badge">' + st.badge + '</div><h3>' + st.heading + '</h3><p>' + st.text + '</p>';
+        processSteps.appendChild(el);
+      });
+
+      // Mid CTA
+      document.getElementById('midCtaH2').textContent = d.midCta.h2;
+      document.getElementById('midCtaText').textContent = d.midCta.text;
+      document.getElementById('midCtaBtn').textContent = d.midCta.btn;
+
+      // Who It's For
+      document.getElementById('whoLabel').textContent = d.who.label;
+      document.getElementById('whoH2').textContent = d.who.h2;
+      document.getElementById('whoCard1Label').textContent = d.who.card1Label;
+      document.getElementById('whoCard2Label').textContent = d.who.card2Label;
+      document.getElementById('whoP1').textContent = d.who.p1;
+      document.getElementById('whoP2').textContent = d.who.p2;
+
+      // FAQ
+      document.getElementById('faqLabel').textContent = d.faq.label;
+      document.getElementById('faqH2').textContent = d.faq.h2;
+
+      var faqList = document.getElementById('faqList');
+      faqList.innerHTML = '';
+      d.faq.items.forEach(function (faq, idx) {
+        var el = document.createElement('details');
+        el.className = 'faq-item';
+        if (idx === 0) el.setAttribute('open', '');
+        el.innerHTML = '<summary>' + faq.q + '</summary><div class="faq-answer"><p>' + faq.a + '</p></div>';
+        faqList.appendChild(el);
+      });
+
+      // Final Enquiry Section
+      document.getElementById('enquiryLabel').textContent = d.enquiry.label;
+      document.getElementById('enquiryH2').textContent = d.enquiry.h2;
+      document.getElementById('enquirySub').textContent = d.enquiry.sub;
+      document.getElementById('contactLineText').textContent = d.enquiry.contactLine;
+      document.getElementById('contactDirectHead').textContent = currentLang === 'nl' ? 'Direct contact:' : 'Direct Contact:';
+      var formBadgeEl = document.getElementById('formBadgeText');
+      if (formBadgeEl && d.enquiry.badge) {
+        formBadgeEl.textContent = d.enquiry.badge;
+      }
+
+      // Form Labels & Fields
+      var f = d.enquiry.formLabels;
+      document.getElementById('lbl-name').childNodes[0].nodeValue = f.name + '\n            ';
+      document.getElementById('lbl-phone').childNodes[0].nodeValue = f.phone + '\n            ';
+      document.getElementById('lbl-email').childNodes[0].nodeValue = f.email + '\n            ';
+      document.getElementById('lbl-postcode').childNodes[0].nodeValue = f.postcode + '\n            ';
+      document.getElementById('lbl-propertyType').childNodes[0].nodeValue = f.propertyType + '\n            ';
+
+      var selProp = document.getElementById('input-propertyType');
+      selProp.innerHTML = '';
+      f.propertyOptions.forEach(function (opt) {
+        var o = document.createElement('option');
+        o.value = opt;
+        o.textContent = opt;
+        selProp.appendChild(o);
+      });
+
+      document.getElementById('lbl-message').childNodes[0].nodeValue = f.message + '\n            ';
+      document.getElementById('input-message').placeholder = f.messagePlaceholder;
+      document.getElementById('uploadLabel').textContent = f.photos;
+      document.getElementById('formHelper').textContent = f.helper;
+      document.getElementById('privacyText').textContent = f.privacy;
+      document.getElementById('submitBtn').textContent = f.submit;
+      document.getElementById('successMessage').textContent = f.success;
+
+      // Mobile Bar
+      document.getElementById('mobileCallBtn').textContent = d.enquiry.mobileButtons.call;
+      document.getElementById('mobileQuoteBtn').textContent = d.enquiry.mobileButtons.quote;
+
+      // Footer
+      document.getElementById('footerText').textContent = d.enquiry.footer;
+      document.getElementById('footLink1').textContent = d.nav.problems;
+      document.getElementById('footLink2').textContent = d.nav.service;
+      document.getElementById('footLink3').textContent = d.nav.process;
+      document.getElementById('footLink4').textContent = d.nav.faq;
+      document.getElementById('footLink5').textContent = currentLang === 'nl' ? 'Contact' : 'Contact';
+
+      // Trigger animation
+      triggerAnimations();
+    }
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'nl' : 'en';
+      renderPage();
+    }
+
+    function closeDrawer() {
+      var drawer = document.getElementById('drawer');
+      if (drawer) drawer.classList.remove('open');
+    }
+
+    function triggerAnimations() {
+      var elements = document.querySelectorAll('.fx');
+      elements.forEach(function (el) {
+        el.classList.remove('in');
+      });
+      setTimeout(function () {
+        elements.forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+            el.classList.add('in');
+          }
+        });
+      }, 50);
+    }
+
+    // Interactive behaviors
+    document.addEventListener('DOMContentLoaded', function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('lang') === 'nl') currentLang = 'nl';
+
+      renderPage();
+
+      document.body.classList.add('is-ready');
+
+      // Drawer open/close
+      var menuBtn = document.getElementById('menuBtn');
+      var closeMenu = document.getElementById('closeMenu');
+      var drawer = document.getElementById('drawer');
+      if (menuBtn && drawer) {
+        menuBtn.onclick = function () { drawer.classList.add('open'); };
+      }
+      if (closeMenu && drawer) {
+        closeMenu.onclick = function () { drawer.classList.remove('open'); };
+      }
+
+      // Photos upload preview
+      var uploadBox = document.getElementById('uploadBox');
+      var photosInput = document.getElementById('photosInput');
+      var fileNames = document.getElementById('fileNames');
+      if (uploadBox && photosInput) {
+        uploadBox.onclick = function () { photosInput.click(); };
+        photosInput.onchange = function (e) {
+          var files = Array.prototype.map.call(e.target.files || [], function (f) { return f.name; });
+          fileNames.textContent = files.length > 0 ? files.join(', ') : '';
+        };
+      }
+
+      // Form submission
+      var form = document.getElementById('enquiryForm');
+      var formOk = document.getElementById('formOk');
+      if (form) {
+        form.onsubmit = function (e) {
+          e.preventDefault();
+          formOk.style.display = 'block';
+          formOk.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          form.reset();
+          if (fileNames) fileNames.textContent = '';
+        };
+      }
+
+      // Parallax Effect for Form and Enquiry Section
+      var contactSec = document.getElementById('enquiry');
+      var formCard = document.querySelector('.form-card');
+      var blob1 = document.querySelector('.blob-1');
+      var blob2 = document.querySelector('.blob-2');
+      var formBadge = document.getElementById('formBadge');
+      var isMouseActive = false;
+
+      if (contactSec && formCard && window.innerWidth > 980) {
+        contactSec.addEventListener('mouseenter', function () {
+          isMouseActive = true;
+        });
+
+        contactSec.addEventListener('mousemove', function (e) {
+          if (window.innerWidth <= 980) return;
+          var rect = contactSec.getBoundingClientRect();
+          var mouseX = e.clientX - rect.left - (rect.width / 2);
+          var mouseY = e.clientY - rect.top - (rect.height / 2);
+
+          var rotX = -(mouseY / rect.height) * 10;
+          var rotY = (mouseX / rect.width) * 12;
+
+          formCard.style.transform = 'perspective(1200px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg) translateZ(8px)';
+
+          if (blob1) {
+            blob1.style.transform = 'translate3d(' + (mouseX * 0.06).toFixed(1) + 'px, ' + (mouseY * 0.06).toFixed(1) + 'px, 0)';
+          }
+          if (blob2) {
+            blob2.style.transform = 'translate3d(' + (-mouseX * 0.05).toFixed(1) + 'px, ' + (-mouseY * 0.05).toFixed(1) + 'px, 0)';
+          }
+          if (formBadge) {
+            formBadge.style.transform = 'translateZ(30px) translate3d(' + (mouseX * 0.02).toFixed(1) + 'px, ' + (mouseY * 0.02).toFixed(1) + 'px, 0)';
+          }
+        });
+
+        contactSec.addEventListener('mouseleave', function () {
+          isMouseActive = false;
+          formCard.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+          if (blob1) blob1.style.transform = 'none';
+          if (blob2) blob2.style.transform = 'none';
+          if (formBadge) formBadge.style.transform = 'translateZ(30px)';
+        });
+      }
+
+      // Scroll Parallax & Scroll nav / back to top
+      var nav = document.querySelector('.nav');
+      var backTop = document.getElementById('backTop');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 20) {
+          nav.classList.add('is-scrolled');
+        } else {
+          nav.classList.remove('is-scrolled');
+        }
+        if (window.scrollY > 300) {
+          backTop.classList.add('is-visible');
+        } else {
+          backTop.classList.remove('is-visible');
+        }
+
+        // Scroll parallax calculation for form section on larger screens
+        if (contactSec && formCard && !isMouseActive && window.innerWidth > 980) {
+          var rect = contactSec.getBoundingClientRect();
+          var winH = window.innerHeight;
+          if (rect.top < winH && rect.bottom > 0) {
+            var scrollProgress = (winH - rect.top) / (winH + rect.height) - 0.5;
+            var offsetFormY = scrollProgress * -20;
+            var offsetBlobY = scrollProgress * 45;
+            formCard.style.transform = 'perspective(1200px) translateY(' + offsetFormY.toFixed(1) + 'px)';
+            if (blob1) blob1.style.transform = 'translate3d(0, ' + offsetBlobY.toFixed(1) + 'px, 0)';
+            if (blob2) blob2.style.transform = 'translate3d(0, ' + (-offsetBlobY).toFixed(1) + 'px, 0)';
+          }
+        }
+
+        document.querySelectorAll('.fx:not(.in)').forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+            el.classList.add('in');
+          }
+        });
+      }, { passive: true });
+
+      if (backTop) {
+        backTop.onclick = function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+      }
+    });
+  </script>
+</body>
+</html>
