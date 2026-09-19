@@ -222,11 +222,11 @@
     .drawer-top {
       display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
     }
-    .drawer a, .drawer button.nav-link-btn {
+    .drawer a:not(.btn), .drawer button.nav-link-btn {
       font-size: 24px; font-family: var(--display); font-weight: 600; text-align: left;
       background: none; border: 0; color: #fff; cursor: pointer; padding: 8px 0;
     }
-    .drawer a:hover, .drawer button.nav-link-btn:hover { color: var(--aqua); }
+    .drawer a:not(.btn):hover, .drawer button.nav-link-btn:hover { color: var(--aqua); }
     .drawer .close-btn {
       border: 0; border-radius: 999px; padding: 10px 18px;
       background: #fff; color: var(--ink); font-weight: 700; cursor: pointer;
@@ -969,6 +969,7 @@
       .hero-bg { object-position: 85% top; }
       .hero-inner { padding: 48px 0 64px; }
       .phone { display: none; }
+      #navCtaBtn { display: none; }
       .form-card { transform: none !important; }
       .form-card-wrap { transform: none !important; perspective: none; }
       .contact-parallax-blob { opacity: 0.3; }
@@ -1046,11 +1047,13 @@
     <a href="#process" onclick="closeDrawer()" id="drawerProcess">Process</a>
     <a href="#who" onclick="closeDrawer()" id="drawerWho">Who It's For</a>
     <a href="#faq" onclick="closeDrawer()" id="drawerFaq">FAQ</a>
-    <a href="#enquiry" onclick="closeDrawer()" id="drawerEnquiry">Request an Inspection</a>
 
-    <div style="margin-top: auto; padding-top: 20px; display: flex; gap: 10px; align-items: center;">
-      <button type="button" class="lang-btn" onclick="toggleLang(); closeDrawer();" id="drawerLangBtn" style="flex:1; padding: 12px;">Switch Language: NL</button>
-      <a class="btn btn-aqua" href="tel:+31625133975" style="flex:1; min-height: 44px; font-size: 13px;">Call FreshGuard</a>
+    <div style="margin-top: auto; padding-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+      <a class="btn btn-aqua" href="#enquiry" onclick="closeDrawer()" id="drawerEnquiry" style="min-height: 48px; font-size: 14px;">Request an Inspection</a>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <button type="button" class="lang-btn" onclick="toggleLang(); closeDrawer();" id="drawerLangBtn" style="flex:1; padding: 12px;">Switch Language: NL</button>
+        <a class="btn btn-ghost" href="tel:+31625133975" style="flex:1; min-height: 44px; font-size: 13px;">Call FreshGuard</a>
+      </div>
     </div>
   </div>
 
