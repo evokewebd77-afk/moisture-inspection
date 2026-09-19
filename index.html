@@ -848,6 +848,9 @@
       display: flex; justify-content: space-between; gap: 24px;
       align-items: center; flex-wrap: wrap; margin-bottom: 28px;
     }
+    footer .logo-img {
+      filter: brightness(0) invert(1);
+    }
     .foot-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; font-weight: 600; }
     .foot-links a:hover { color: var(--aqua); }
     .foot-bottom {
@@ -973,6 +976,9 @@
       .form-bottom .btn { width: 100%; }
       .mobile-bar { display: flex; }
       footer { padding-bottom: 96px; }
+      .foot-top { justify-content: center; flex-direction: column; text-align: center; }
+      .foot-links { justify-content: center; }
+      .foot-bottom { flex-direction: column; text-align: center; align-items: center; }
       .fabs { bottom: 74px; }
     }
   </style>
