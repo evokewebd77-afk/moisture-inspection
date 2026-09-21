@@ -1156,6 +1156,18 @@
         </article>
       </div>
 
+      <div class="bamah-partner-section fx" style="--d:1.5; margin-top: 32px; background: rgba(255, 255, 255, 0.94); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 24px; box-shadow: 0 6px 20px rgba(2,22,25,0.06); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+          <p style="font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 12px;" id="bamahPartnerTitle">In partnership with</p>
+          <a href="https://ba-mah.nl" target="_blank" rel="noopener noreferrer">
+            <img src="https://backend.freshguard.nl/assets/ee950438-719c-4f71-8031-b1d0770e349a" alt="BA-MAH Totaaltechniek" style="max-height: 54px; object-fit: contain; display: inline-block;" />
+          </a>
+        </div>
+        <div style="flex: 1; min-width: 250px; display: flex; justify-content: center;">
+          <div class="trustoo-widget" data-id="376075" data-country-code="NL" data-size="small" data-type="landscape" data-theme="light"></div>
+        </div>
+      </div>
+
       <div class="service-note-box fx" style="--d:2" id="serviceNote">
         Inspection and repair are different services. Confirm any repair, drying, restoration or follow-up work separately so you understand the full scope before booking.
       </div>
@@ -1453,8 +1465,7 @@
             {
               num: "03",
               heading: "Specialist leak detection",
-              text: "When a suspected leak needs specialist investigation, FreshGuard works with BA-MAH Totaaltechniek. Ask which company will attend, what the investigation includes and who will provide the quotation and report.",
-              html: '<div class="bamah-partner" style="margin-top: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1);"><a href="https://ba-mah.nl" target="_blank" rel="noopener noreferrer"><img src="https://backend.freshguard.nl/assets/ee950438-719c-4f71-8031-b1d0770e349a" alt="BA-MAH Totaaltechniek" style="max-height: 48px; object-fit: contain;" /></a><div class="trustoo-widget" data-id="376075" data-country-code="NL" data-size="small" data-type="landscape" data-theme="light"></div></div>'
+              text: "When a suspected leak needs specialist investigation, FreshGuard works with BA-MAH Totaaltechniek. Ask which company will attend, what the investigation includes and who will provide the quotation and report."
             }
           ],
           note: "Inspection and repair are different services. Confirm any repair, drying, restoration or follow-up work separately so you understand the full scope before booking."
@@ -1604,8 +1615,7 @@
             {
               num: "03",
               heading: "Specialistische lekdetectie",
-              text: "Is specialistisch onderzoek naar een mogelijke lekkage nodig? Dan werkt FreshGuard samen met BA-MAH Totaaltechniek. Vraag vooraf wie het onderzoek uitvoert, wat is inbegrepen en wie de offerte en rapportage verzorgt.",
-              html: '<div class="bamah-partner" style="margin-top: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1);"><a href="https://ba-mah.nl" target="_blank" rel="noopener noreferrer"><img src="https://backend.freshguard.nl/assets/ee950438-719c-4f71-8031-b1d0770e349a" alt="BA-MAH Totaaltechniek" style="max-height: 48px; object-fit: contain;" /></a><div class="trustoo-widget" data-id="376075" data-country-code="NL" data-size="small" data-type="landscape" data-theme="light"></div></div>'
+              text: "Is specialistisch onderzoek naar een mogelijke lekkage nodig? Dan werkt FreshGuard samen met BA-MAH Totaaltechniek. Vraag vooraf wie het onderzoek uitvoert, wat is inbegrepen en wie de offerte en rapportage verzorgt."
             }
           ],
           note: "Onderzoek en herstel zijn verschillende werkzaamheden. Bespreek reparaties, droging, herstelwerk en eventuele vervolgbezoeken afzonderlijk, zodat duidelijk is wat u afspreekt."
@@ -1774,6 +1784,10 @@
       }
       if (document.getElementById('serviceNote')) {
         document.getElementById('serviceNote').textContent = d.service.note;
+      }
+      var bamahTitle = document.getElementById('bamahPartnerTitle');
+      if (bamahTitle) {
+        bamahTitle.textContent = currentLang === 'nl' ? 'In samenwerking met' : 'In partnership with';
       }
 
       var serviceCards = document.getElementById('serviceCards');
