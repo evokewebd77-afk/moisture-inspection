@@ -994,6 +994,7 @@
 <body>
 
   <!-- Floating particles -->
+  <script async src="https://static.trustoo.nl/widget/widget_v2.js"></script>
   <div class="flyers" aria-hidden="true">
     <span class="flyer flyer-leaf f1">
       <svg viewBox="0 0 64 64" fill="none"><path d="M52 8C28 10 12 28 12 48c12-2 28-14 36-36 2 14-2 28-12 38 18-8 28-24 16-42z" fill="currentColor"/><path d="M20 46c10-8 20-22 24-34" stroke="currentColor" stroke-width="2" opacity=".45"/></svg>
@@ -1452,7 +1453,8 @@
             {
               num: "03",
               heading: "Specialist leak detection",
-              text: "When a suspected leak needs specialist investigation, FreshGuard works with BA-MAH Totaaltechniek. Ask which company will attend, what the investigation includes and who will provide the quotation and report."
+              text: "When a suspected leak needs specialist investigation, FreshGuard works with BA-MAH Totaaltechniek. Ask which company will attend, what the investigation includes and who will provide the quotation and report.",
+              html: '<div class="bamah-partner" style="margin-top: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1);"><a href="https://ba-mah.nl" target="_blank" rel="noopener noreferrer"><img src="https://backend.freshguard.nl/assets/ee950438-719c-4f71-8031-b1d0770e349a" alt="BA-MAH Totaaltechniek" style="max-height: 48px; object-fit: contain;" /></a><div class="trustoo-widget" data-id="376075" data-country-code="NL" data-size="small" data-type="landscape" data-theme="light"></div></div>'
             }
           ],
           note: "Inspection and repair are different services. Confirm any repair, drying, restoration or follow-up work separately so you understand the full scope before booking."
@@ -1602,7 +1604,8 @@
             {
               num: "03",
               heading: "Specialistische lekdetectie",
-              text: "Is specialistisch onderzoek naar een mogelijke lekkage nodig? Dan werkt FreshGuard samen met BA-MAH Totaaltechniek. Vraag vooraf wie het onderzoek uitvoert, wat is inbegrepen en wie de offerte en rapportage verzorgt."
+              text: "Is specialistisch onderzoek naar een mogelijke lekkage nodig? Dan werkt FreshGuard samen met BA-MAH Totaaltechniek. Vraag vooraf wie het onderzoek uitvoert, wat is inbegrepen en wie de offerte en rapportage verzorgt.",
+              html: '<div class="bamah-partner" style="margin-top: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1);"><a href="https://ba-mah.nl" target="_blank" rel="noopener noreferrer"><img src="https://backend.freshguard.nl/assets/ee950438-719c-4f71-8031-b1d0770e349a" alt="BA-MAH Totaaltechniek" style="max-height: 48px; object-fit: contain;" /></a><div class="trustoo-widget" data-id="376075" data-country-code="NL" data-size="small" data-type="landscape" data-theme="light"></div></div>'
             }
           ],
           note: "Onderzoek en herstel zijn verschillende werkzaamheden. Bespreek reparaties, droging, herstelwerk en eventuele vervolgbezoeken afzonderlijk, zodat duidelijk is wat u afspreekt."
@@ -1778,7 +1781,11 @@
       d.service.cards.forEach(function (card) {
         var el = document.createElement('article');
         el.className = 'service-card';
-        el.innerHTML = '<div class="card-num">' + card.num + '</div><h3>' + card.heading + '</h3><p>' + card.text + '</p>';
+        var htmlContent = '<div class="card-num">' + card.num + '</div><h3>' + card.heading + '</h3><p>' + card.text + '</p>';
+        if (card.html) {
+          htmlContent += card.html;
+        }
+        el.innerHTML = htmlContent;
         serviceCards.appendChild(el);
       });
 
