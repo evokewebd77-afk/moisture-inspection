@@ -5,6 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="pageTitle">FreshGuard — Moisture Inspection and Leak Detection</title>
   <meta id="metaDesc" name="description" content="Moisture investigation for homes and business premises in the Netherlands. FreshGuard offers moisture assessment and works with BA-MAH Totaaltechniek when specialist leak detection is required." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "FreshGuard — Moisture Inspection and Leak Detection",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "reviewCount": "5"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Camille Pearson" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "datePublished": "2026-02-21",
+        "reviewBody": "We had a great experience with FreshGuard, they helped us with rising damp damage in our kitchen and we are now happily mould free! They are kind, friendly, efficient and honest, I am happily recommending their services."
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Nirupa Raghavan" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "datePublished": "2026-02-21",
+        "reviewBody": "I had booked services of FreshGuard to take a look at suspected mould in our house. They explained the whole process very clearly. The service was very fast. All my questions were also answered patiently after service to prevent mould recurrence. Very happy to have booked them, highly recommend to all for a clean home!"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Neil Finaughty" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "datePublished": "2026-02-21",
+        "reviewBody": "The entire process from initial contact to the follow up after remediation with Freshguard was excellent. Both Nick, Diederick and Per were super knowledgeable, responsive, clear and professional in every aspect. Transparent quotation and were open to making things fit within my budget. The actual remediation was quick and seems to have done the trick. I can recommend to anyone lost in the minefield that is a mould infestation. Great work!"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Jenn Darby" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "datePublished": "2025-11-21",
+        "reviewBody": "Fresh Guard responded quickly when we discovered mold in our attic. They came & treated the area, as well as fogging the room to kill any mold spores. They're so kind and knowledgeable and I'm grateful they came and handled our mold issue!"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Lyndsi Ross-Trevor" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "datePublished": "2026-02-21",
+        "reviewBody": "Super easy to schedule an appointment, Per did a great job prepping the area to make sure it stayed clean, was super friendly while working and did a very thorough job removing the mold. Also really nice they provide a 2-year guarantee on the removal."
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -586,6 +636,127 @@
     .who-card h3 { font-size: 22px; color: var(--ink); }
     .who-card p { font-size: 15px; line-height: 1.65; }
 
+    /* GOOGLE REVIEWS */
+    .reviews-sec { background: var(--white); border-top: 1px solid var(--line); }
+    .reviews-sec .section-head { margin-bottom: 24px; }
+    .reviews-summary {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+      background: var(--fog);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .reviews-summary .g-mark { width: 30px; height: 30px; flex: 0 0 auto; }
+    .rs-score { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; }
+    .rs-score strong { font-family: var(--display); font-size: 22px; }
+    .rs-stars { color: #f4c430; letter-spacing: 2px; font-size: 16px; }
+    .rs-meta { font-size: 13px; color: var(--muted); }
+    .reviews-summary .btn { margin-left: auto; min-height: 44px; font-size: 13px; white-space: nowrap; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 16px;
+    }
+    .review-card {
+      background: var(--fog);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(2,22,25,0.03);
+      transition: all .3s ease;
+    }
+    .review-card:hover {
+      border-color: var(--aqua);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(2,22,25,0.08);
+    }
+    .review-card::after {
+      content: "“";
+      position: absolute;
+      top: -2px; right: 10px;
+      font-family: var(--display);
+      font-size: 44px;
+      line-height: 1;
+      color: var(--aqua);
+      opacity: 0.16;
+      pointer-events: none;
+    }
+    .review-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--deep);
+      color: #fff;
+      display: grid; place-items: center;
+      font-family: var(--display);
+      font-size: 13px; font-weight: 700;
+      flex: 0 0 auto;
+    }
+    .review-name { font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+    .review-stars { color: #f4c430; letter-spacing: 1.5px; font-size: 12px; line-height: 1.3; }
+    .review-source {
+      margin-left: auto;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #fff; border: 1px solid var(--line);
+      display: grid; place-items: center;
+      color: #4285F4; font-weight: 700; font-size: 13px;
+      transition: all .2s ease;
+      flex: 0 0 auto;
+    }
+    .review-source:hover { border-color: var(--aqua); box-shadow: 0 4px 12px rgba(66,133,244,.25); }
+    .review-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+    .review-card.expanded .review-text {
+      -webkit-line-clamp: unset;
+    }
+    .review-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+    .review-toggle {
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--aqua-strong);
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+    .review-toggle:hover { text-decoration: underline; }
+
     /* FAQ ACCORDION */
     .faq-sec {
       position: relative;
@@ -961,7 +1132,7 @@
       :root { --nav: 64px; --pad: 20px; }
       .nav-links { display: none; }
       .menu { display: inline-flex; align-items: center; justify-content: center; }
-      .problems-grid, .cards-grid-3, .steps-grid, .who-grid, .contact-grid {
+      .problems-grid, .cards-grid-3, .steps-grid, .who-grid, .contact-grid, .reviews-grid {
         grid-template-columns: 1fr;
         gap: 20px;
       }
@@ -1239,6 +1410,90 @@
     </div>
   </section>
 
+  <!-- GOOGLE REVIEWS -->
+  <section class="reviews-sec" id="reviews">
+    <div class="shell">
+      <div class="section-head fx">
+        <div class="label" id="reviewsLabel">Google reviews</div>
+        <h2 id="reviewsH2">What Our Clients Say</h2>
+      </div>
+
+      <div class="reviews-summary fx" style="--d:1">
+        <svg class="g-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        <span class="rs-score"><strong>4.9/5</strong><span class="rs-stars" aria-hidden="true">★★★★★</span></span>
+        <span class="rs-meta" id="reviewsSummaryText">Rated on Google</span>
+        <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=FreshGuard+Netherlands" target="_blank" rel="noopener noreferrer" id="reviewsCta">Read all reviews on Google</a>
+      </div>
+
+      <div class="reviews-grid fx" style="--d:2">
+        <article class="review-card">
+          <div class="review-top">
+            <div class="avatar" aria-hidden="true">CP</div>
+            <div>
+              <div class="review-name">Camille Pearson</div>
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <a class="review-source" href="https://www.google.com/maps/contrib/116337196046856660298/reviews" target="_blank" rel="noopener noreferrer" aria-label="View review on Google">G</a>
+          </div>
+          <p class="review-text">"We had a great experience with FreshGuard, they helped us with rising damp damage in our kitchen and we are now happily mould free! They are kind, friendly, efficient and honest, I am happily recommending their services."</p>
+          <div class="review-meta"><span>Posted on Google · 7 months ago</span><button class="review-toggle" type="button" aria-expanded="false">Read more</button></div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="avatar" aria-hidden="true">NF</div>
+            <div>
+              <div class="review-name">Neil Finaughty</div>
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <a class="review-source" href="https://www.google.com/maps/contrib/112734296781624550230/reviews" target="_blank" rel="noopener noreferrer" aria-label="View review on Google">G</a>
+          </div>
+          <p class="review-text">"The entire process from initial contact to the follow up after remediation with Freshguard was excellent. Both Nick, Diederick and Per were super knowledgeable, responsive, clear and professional in every aspect. Transparent quotation and were open to making things fit within my budget. The actual remediation was quick and seems to have done the trick. I can recommend to anyone lost in the minefield that is a mould infestation. Great work!"</p>
+          <div class="review-meta"><span>Posted on Google · 7 months ago</span><button class="review-toggle" type="button" aria-expanded="false">Read more</button></div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="avatar" aria-hidden="true">NR</div>
+            <div>
+              <div class="review-name">Nirupa Raghavan</div>
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <a class="review-source" href="https://www.google.com/maps/contrib/100835816239000145590/reviews" target="_blank" rel="noopener noreferrer" aria-label="View review on Google">G</a>
+          </div>
+          <p class="review-text">"I had booked services of FreshGuard to take a look at suspected mould in our house. They explained the whole process very clearly. The service was very fast. All my questions were also answered patiently after service to prevent mould recurrence. Very happy to have booked them, highly recommend to all for a clean home!"</p>
+          <div class="review-meta"><span>Posted on Google · 7 months ago</span><button class="review-toggle" type="button" aria-expanded="false">Read more</button></div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="avatar" aria-hidden="true">JD</div>
+            <div>
+              <div class="review-name">Jenn Darby</div>
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <a class="review-source" href="https://www.google.com/maps/contrib/109942977889427485642/reviews" target="_blank" rel="noopener noreferrer" aria-label="View review on Google">G</a>
+          </div>
+          <p class="review-text">"Fresh Guard responded quickly when we discovered mold in our attic. They came & treated the area, as well as fogging the room to kill any mold spores. They're so kind and knowledgeable and I'm grateful they came and handled our mold issue!"</p>
+          <div class="review-meta"><span>Posted on Google · 10 months ago</span><button class="review-toggle" type="button" aria-expanded="false">Read more</button></div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-top">
+            <div class="avatar" aria-hidden="true">LR</div>
+            <div>
+              <div class="review-name">Lyndsi Ross-Trevor</div>
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+            <a class="review-source" href="https://www.google.com/maps/contrib/112952082050565522242/reviews" target="_blank" rel="noopener noreferrer" aria-label="View review on Google">G</a>
+          </div>
+          <p class="review-text">"Super easy to schedule an appointment, Per did a great job prepping the area to make sure it stayed clean, was super friendly while working and did a very thorough job removing the mold. Also really nice they provide a 2-year guarantee on the removal."</p>
+          <div class="review-meta"><span>Posted on Google · 7 months ago</span><button class="review-toggle" type="button" aria-expanded="false">Read more</button></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- FREQUENTLY ASKED QUESTIONS -->
   <section class="faq-sec" id="faq">
     <div class="shell">
@@ -1509,6 +1764,14 @@
           card2Label: "Reports & Documentation",
           p2: "If documentation is important, explain this before booking. Report requirements and insurer acceptance should be checked in advance."
         },
+        reviews: {
+          label: "Google reviews",
+          h2: "What Our Clients Say",
+          summary: "Rated on Google",
+          cta: "Read all reviews on Google",
+          readMore: "Read more",
+          readLess: "Read less"
+        },
         faq: {
           label: "Frequently asked questions",
           h2: "Questions About Moisture Inspections and Leak Detection",
@@ -1658,6 +1921,14 @@
           p1: "Met een inspectieaanvraag kunt u duidelijkheid krijgen over de vervolgstap voordat u werkzaamheden laat uitvoeren. Laat weten of u eigenaar, huurder of beheerder bent en waarvoor u de bevindingen wilt gebruiken, bijvoorbeeld onderhoud, overleg met een aannemer of een verzekeringsvraag.",
           card2Label: "Documentatie & Verzekering",
           p2: "Heeft u specifieke documentatie nodig? Bespreek dit vóór het boeken. Controleer ook vooraf welke eisen uw verzekeraar aan een rapport stelt."
+        },
+        reviews: {
+          label: "Google beoordelingen",
+          h2: "Wat Klanten over Ons Zeggen",
+          summary: "Beoordeeld op Google",
+          cta: "Bekijk alle beoordelingen op Google",
+          readMore: "Lees meer",
+          readLess: "Toon minder"
         },
         faq: {
           label: "Frequently asked questions",
@@ -1829,6 +2100,18 @@
       document.getElementById('whoP1').textContent = d.who.p1;
       document.getElementById('whoP2').textContent = d.who.p2;
 
+      // Google Reviews
+      document.getElementById('reviewsLabel').textContent = d.reviews.label;
+      document.getElementById('reviewsH2').textContent = d.reviews.h2;
+      document.getElementById('reviewsSummaryText').textContent = d.reviews.summary;
+      document.getElementById('reviewsCta').textContent = d.reviews.cta;
+
+      // Review read more / read less labels
+      document.querySelectorAll('.review-toggle').forEach(function (t) {
+        var expanded = t.closest('.review-card') !== null && t.closest('.review-card').classList.contains('expanded');
+        t.textContent = expanded ? d.reviews.readLess : d.reviews.readMore;
+      });
+
       // FAQ
       document.getElementById('faqLabel').textContent = d.faq.label;
       document.getElementById('faqH2').textContent = d.faq.h2;
@@ -1938,6 +2221,21 @@
       if (closeMenu && drawer) {
         closeMenu.onclick = function () { drawer.classList.remove('open'); };
       }
+
+      // Review read more / read less
+      document.querySelectorAll('.review-card').forEach(function (card) {
+        var text = card.querySelector('.review-text');
+        var toggle = card.querySelector('.review-toggle');
+        if (!text || !toggle) return;
+        if (text.scrollHeight <= text.clientHeight + 1) {
+          toggle.style.display = 'none';
+        }
+        toggle.addEventListener('click', function () {
+          var expanded = card.classList.toggle('expanded');
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.textContent = expanded ? pageData[currentLang].reviews.readLess : pageData[currentLang].reviews.readMore;
+        });
+      });
 
       // Photos upload preview
       var uploadBox = document.getElementById('uploadBox');
